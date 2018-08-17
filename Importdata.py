@@ -61,7 +61,7 @@ def clean_history_data(player_history):
 
 		# sort out team and opponent goals and if it was a home game
 		# set if home or away and extract opponent
-		if temp[5] == 'false':
+		if temp[5] == False:
 			# if false it was an away fixture
 			temp[5] = '0'
 			index[-2] = 4
@@ -84,7 +84,7 @@ def clean_fixture_data(player_fixtures):
 		temp = list(fixture.values())
 
 		# set if home or away and extract opponent
-		if temp[5] == 'false':
+		if temp[5] == False:
 			#if false it was away
 			temp[5] = '0'
 			gw_fixtures.append([temp[i] for i in [5,6,17]])
@@ -343,7 +343,8 @@ def save_all_data(filename):
 			print('Processing player {} of {}...'.format(i+1,number_players))
 
 		# data is imported here
-		temp_data = import_player_data2(i+1,team_name_data)
+		row_player_id = basic_data_values[i][0]
+		temp_data = import_player_data2(row_player_id,team_name_data)
 
 		# player_data has [player id][basic data, history, future]
 		player_data.append([basic_data_values[i]+[temp_data[0]]] + temp_data[1:])
